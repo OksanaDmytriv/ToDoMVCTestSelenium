@@ -2,7 +2,6 @@ package ToDoMVCTest.v2102;
 
 import org.junit.Test;
 import org.openqa.selenium.Keys;
-import todomvctest.core.BaseTest;
 
 import static todomvctest.core.pages.ToDoMVC.TaskType.COMPLETED;
 import static todomvctest.core.pages.ToDoMVC.*;
@@ -14,7 +13,7 @@ public class ToDoMVCCompletedFilterTest extends BaseTest {
         givenAtCompleted(aTask("a", COMPLETED),
                 aTask("b", COMPLETED));
 
-        startEditing("a", "a edited").pressEnter();
+        startEditing("a", "a edited").sendKeys(Keys.ENTER);
         assertTasks("a edited", "b");
         assertItemsLeft(0);
     }

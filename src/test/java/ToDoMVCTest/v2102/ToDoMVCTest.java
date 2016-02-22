@@ -1,7 +1,6 @@
 package ToDoMVCTest.v2102;
 
 import org.junit.Test;
-import todomvctest.core.BaseTest;
 
 import static todomvctest.core.pages.ToDoMVC.*;
 

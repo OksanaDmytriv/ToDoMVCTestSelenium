@@ -3,9 +3,8 @@ package todomvctest.core.pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.junit.BeforeClass;
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.WebElement;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.CollectionCondition.empty;
@@ -14,19 +13,10 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.url;
+import static todomvctest.core.pages.Helpers.doubleClick;
+import static todomvctest.core.pages.Helpers.hover;
 
 public class ToDoMVC {
-
-    //static WebDriver driver;
-    //static WebDriverWait wait;
-    static Actions actions;
-
-    @BeforeClass
-    public static void setUp() {
-        //driver = new FirefoxDriver();
-        actions = new Actions(getWebDriver());
-        //wait = new WebDriverWait(driver, 6);
-    }
 
     public static ElementsCollection tasks = $$("#todo-list li");
 
@@ -60,16 +50,23 @@ public class ToDoMVC {
         $("#toggle-all").click();
     }
 
-    public static void doubleClick(int index) {
-        actions.doubleClick(getWebDriver().findElements(By.cssSelector("#todo-list li")).get(index)).perform();
+    @Step
+    public static WebElement startEditing(String oldText, String newText) {
+        WebElement element = tasks.find(exactText(oldText));
+        doubleClick(element);
+        //tasks.find(exactText(oldText)).doubleClick();
+        //return tasks.find(cssClass("editing")).$(".edit").setValue(newText);
+        //WebElement el = getWebDriver().findElement(By.className(".editing")).findElement(By.cssSelector(".edit"));
+        //return getWebDriver().findElement(By.className(".editing")).findElement(By.cssSelector(".edit")).sendKeys(newText.toString());
 
-        //actions.doubleClick(tasks.find(exactText(taskName))).perform();
+        return tasks.find(cssClass("editing")).$(".edit").setValue(newText);
     }
 
     @Step
-    public static SelenideElement startEditing(String oldText, String newText) {
-        doubleClick(0);
-        return tasks.find(cssClass("editing")).$(".edit").setValue(newText);
+    public static void delete(String taskText) {
+        WebElement element = tasks.find(exactText(taskText));
+        hover(element);
+        getWebDriver().findElement(By.className("destroy")).click();
     }
 
     @Step
@@ -85,24 +82,6 @@ public class ToDoMVC {
     @Step
     public static void filterCompleted() {
         $("[href='#/completed']").click();
-    }
-
-    public static void hover(String taskText) {
-        //return actions.moveToElement(tasks.find(exactText(taskText))).build().perform();
-
-        //actions.moveToElement(tasks.find(exactText(taskText))).perform();
-        //getWebDriver().findElement(By.cssSelector(".destroy")).click();
-
-        //actions.moveToElement(tasks.find(exactText(taskText))).moveToElement(getWebDriver().findElement(By.cssSelector(".destroy"))).click().build().perform();
-    }
-
-    @Step
-    public static void delete(String taskText) {
-        //hover(taskText);
-        //$(".destroy").click();
-        //getWebDriver().findElement(By.className("destroy")).click();
-
-        //tasks.find(exactText(taskText)).hover().$(".destroy").click();
     }
 
     @Step

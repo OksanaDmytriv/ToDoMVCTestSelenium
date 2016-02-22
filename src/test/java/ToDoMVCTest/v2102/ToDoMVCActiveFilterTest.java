@@ -2,7 +2,6 @@ package ToDoMVCTest.v2102;
 
 import org.junit.Test;
 import org.openqa.selenium.Keys;
-import todomvctest.core.BaseTest;
 
 import static todomvctest.core.pages.ToDoMVC.TaskType.ACTIVE;
 import static todomvctest.core.pages.ToDoMVC.TaskType.COMPLETED;
@@ -40,7 +39,7 @@ public class ToDoMVCActiveFilterTest extends BaseTest {
     public void testEditAtActive() {
         givenAtActive("a", "b");
 
-        startEditing("a", "a edited").pressEnter();
+        startEditing("a", "a edited").sendKeys(Keys.ENTER);
         assertTasks("a edited", "b");
         assertItemsLeft(2);
     }
@@ -58,7 +57,7 @@ public class ToDoMVCActiveFilterTest extends BaseTest {
     public void testDeleteWhileEditingAtActive() {
         givenAtActive(aTask("a", ACTIVE));
 
-        startEditing("a", " ").pressEnter();
+        startEditing("a", " ").sendKeys(Keys.ENTER);
         assertEmptyVisibleTasks();
     }
 
