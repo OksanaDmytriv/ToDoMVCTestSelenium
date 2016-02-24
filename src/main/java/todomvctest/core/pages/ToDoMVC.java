@@ -3,18 +3,14 @@ package todomvctest.core.pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import ru.yandex.qatools.allure.annotations.Step;
+import todomvctest.core.Helpers;
 
 import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.url;
-import static todomvctest.core.pages.Helpers.doubleClick;
-import static todomvctest.core.pages.Helpers.hover;
 
 public class ToDoMVC {
 
@@ -51,22 +47,16 @@ public class ToDoMVC {
     }
 
     @Step
-    public static WebElement startEditing(String oldText, String newText) {
-        WebElement element = tasks.find(exactText(oldText));
-        doubleClick(element);
-        //tasks.find(exactText(oldText)).doubleClick();
-        //return tasks.find(cssClass("editing")).$(".edit").setValue(newText);
-        //WebElement el = getWebDriver().findElement(By.className(".editing")).findElement(By.cssSelector(".edit"));
-        //return getWebDriver().findElement(By.className(".editing")).findElement(By.cssSelector(".edit")).sendKeys(newText.toString());
-
+    public static SelenideElement startEditing(String oldText, String newText) {
+        Helpers.doubleClick(tasks.find(exactText(oldText)));
         return tasks.find(cssClass("editing")).$(".edit").setValue(newText);
     }
 
     @Step
     public static void delete(String taskText) {
-        WebElement element = tasks.find(exactText(taskText));
-        hover(element);
-        getWebDriver().findElement(By.className("destroy")).click();
+
+        Helpers.hover(tasks.find(exactText(taskText)));
+        tasks.find(exactText(taskText)).$(".destroy").click();
     }
 
     @Step

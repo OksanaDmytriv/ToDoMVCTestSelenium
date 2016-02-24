@@ -1,4 +1,4 @@
-package ToDoMVCTest.v2102;
+package ToDoMVCTest.v2402;
 
 import com.codeborne.selenide.Screenshots;
 import com.google.common.io.Files;
@@ -17,7 +17,7 @@ public class BaseTest {
 
     @Attachment(type = "image/png")
     public byte[] screenshot() throws IOException {
-        File screenshot = Screenshots.getScreenShotAsFile();
+        File screenshot = Screenshots.takeScreenShotAsFile();
         return Files.toByteArray(screenshot);
     }
 }
