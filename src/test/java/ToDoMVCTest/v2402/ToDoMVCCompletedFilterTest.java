@@ -3,8 +3,8 @@ package ToDoMVCTest.v2402;
 import org.junit.Test;
 import org.openqa.selenium.Keys;
 
-import static todomvctest.core.pages.ToDoMVC.TaskType.COMPLETED;
-import static todomvctest.core.pages.ToDoMVC.*;
+import static todomvctest.pages.ToDoMVC.TaskType.COMPLETED;
+import static todomvctest.pages.ToDoMVC.*;
 
 public class ToDoMVCCompletedFilterTest extends BaseTest {
 

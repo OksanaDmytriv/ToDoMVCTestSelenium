@@ -1,6 +1,7 @@
 package todomvctest.core;
 
 import org.openqa.selenium.WebElement;
+
 import static com.codeborne.selenide.Selenide.actions;
 
 public class Helpers {

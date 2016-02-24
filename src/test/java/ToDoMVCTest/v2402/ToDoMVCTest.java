@@ -2,7 +2,7 @@ package ToDoMVCTest.v2402;
 
 import org.junit.Test;
 
-import static todomvctest.core.pages.ToDoMVC.*;
+import static todomvctest.pages.ToDoMVC.*;
 
 public class ToDoMVCTest extends BaseTest {
 

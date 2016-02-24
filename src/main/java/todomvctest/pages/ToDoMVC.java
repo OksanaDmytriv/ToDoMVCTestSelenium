@@ -1,4 +1,4 @@
-package todomvctest.core.pages;
+package todomvctest.pages;
 
 
 import com.codeborne.selenide.ElementsCollection;
@@ -54,6 +54,7 @@ public class ToDoMVC {
 
     @Step
     public static void delete(String taskText) {
+
 
         Helpers.hover(tasks.find(exactText(taskText)));
         tasks.find(exactText(taskText)).$(".destroy").click();
