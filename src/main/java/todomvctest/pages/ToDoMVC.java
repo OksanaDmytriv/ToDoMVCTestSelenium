@@ -48,7 +48,7 @@ public class ToDoMVC {
 
     @Step
     public static SelenideElement startEditing(String oldText, String newText) {
-        Helpers.doubleClick(tasks.find(exactText(oldText)));
+        Helpers.doubleClick($$("#todo-list li label").find(exactText(oldText)));
         return tasks.find(cssClass("editing")).$(".edit").setValue(newText);
     }
 
