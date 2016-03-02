@@ -48,15 +48,13 @@ public class ToDoMVC {
 
     @Step
     public static SelenideElement startEditing(String oldText, String newText) {
-        Helpers.doubleClick($$("#todo-list li label").find(exactText(oldText)));
+        Helpers.doubleClick($$("#todo-list li").find(exactText(oldText)).$("label"));
         return tasks.find(cssClass("editing")).$(".edit").setValue(newText);
     }
 
     @Step
     public static void delete(String taskText) {
-
-
-        Helpers.hover(tasks.find(exactText(taskText)));
+        tasks.find(exactText(taskText)).hover();
         tasks.find(exactText(taskText)).$(".destroy").click();
     }
 
